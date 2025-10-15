@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { ConfigProvider } from 'antd';
 import "@/app/globals.css";
 
 const geistSans = Geist({
@@ -14,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "English with CiCi",
-  description: "Learn English with interactive lessons and practice",
+  title: "English with CiCi - Học tiếng Anh hiệu quả",
+  description: "Nền tảng học tiếng Anh hiện đại với phương pháp học tương tác, cá nhân hóa và hiệu quả",
+  keywords: ["English learning", "học tiếng Anh", "CiCi", "tiếng Anh giao tiếp"],
 };
 
 export default function RootLayout({
@@ -24,12 +26,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="vi">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AntdRegistry>
-          {children}
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: '#1677ff',
+                borderRadius: 8,
+                fontFamily: 'var(--font-geist-sans)',
+              },
+            }}
+          >
+            {children}
+          </ConfigProvider>
         </AntdRegistry>
       </body>
     </html>

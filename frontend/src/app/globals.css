@@ -1,3 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
+}
+
+/* Custom styles for Ant Design and layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Override Ant Design styles where needed */
+.ant-layout-header {
+  padding: 0 !important;
+}
+
+.ant-layout-content {
+  padding: 0 !important;
+}
+
+.ant-layout-footer {
+  padding: 24px 0 !important;
+}
+
+/* Ensure proper spacing for sections */
+.hero-section {
+  min-height: 60vh;
+}
+
+/* Custom button hover effects */
+.ant-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Card hover effects */
+.ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  
+  nav {
+    display: none !important;
+  }
+}
+
+/* Header responsive */
+@media (max-width: 1024px) {
+  .ant-layout-header {
+    padding: 0 32px !important;
+  }
+  
+  nav {
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ant-layout-header {
+    padding: 0 20px !important;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navigation hover effects enhancement */
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #1677ff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover::before {
+  width: 100%;
 }
