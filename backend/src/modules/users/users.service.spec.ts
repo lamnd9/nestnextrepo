@@ -16,14 +16,27 @@ describe('UsersService', () => {
       findById: jest.fn(),
       findByIdAndUpdate: jest.fn(),
       findByIdAndDelete: jest.fn(),
+      countDocuments: jest.fn().mockReturnThis(),
+      select: jest.fn().mockReturnThis(),
+      sort: jest.fn().mockReturnThis(),
+      skip: jest.fn().mockReturnThis(),
+      limit: jest.fn().mockReturnThis(),
+      exec: jest.fn(),
       save: jest.fn(),
     };
 
-    const MockUserModel = jest.fn().mockImplementation(() => ({
-      ...mockUserModel,
-      save: jest.fn().mockResolvedValue({}),
+    const MockUserModel = jest.fn().mockImplementation((dto) => ({
+      ...dto,
+      save: jest.fn().mockResolvedValue({
+        _id: 'mockId',
+        ...dto,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }),
     }));
-    MockUserModel.prototype = mockUserModel;
+
+    // Attach static methods to the constructor
+    Object.assign(MockUserModel, mockUserModel);
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [

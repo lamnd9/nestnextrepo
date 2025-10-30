@@ -60,7 +60,7 @@ describe('UsersService - Pagination', () => {
 
       mockUserModel.exec
         .mockResolvedValueOnce(mockUsers)
-        .mockResolvedValueOnOne(1);
+        .mockResolvedValueOnce(1);
 
       const query: QueryUsersDto = { search: 'john' };
       await service.findAllWithPagination(query);
